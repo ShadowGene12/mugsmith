@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Mugsmith Premium Palette */
+    --background: 36 33% 95%;
+    --foreground: 20 14% 10%;
+
+    --card: 36 30% 97%;
+    --card-foreground: 20 14% 10%;
+
+    --popover: 36 30% 97%;
+    --popover-foreground: 20 14% 10%;
+
+    --primary: 20 14% 10%;
+    --primary-foreground: 36 33% 95%;
+
+    --secondary: 36 20% 90%;
+    --secondary-foreground: 20 14% 10%;
+
+    --muted: 36 15% 88%;
+    --muted-foreground: 20 10% 40%;
+
+    --accent: 43 74% 38%;
+    --accent-foreground: 36 33% 95%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 36 20% 85%;
+    --input: 36 20% 85%;
+    --ring: 43 74% 38%;
+
+    --radius: 0.5rem;
+
+    /* Custom Mugsmith tokens */
+    --gold: 43 74% 38%;
+    --gold-light: 43 60% 50%;
+    --gold-muted: 43 40% 70%;
+    --bone: 36 33% 95%;
+    --bone-dark: 36 25% 90%;
+    --charcoal: 20 14% 10%;
+    --charcoal-light: 20 10% 25%;
+    --warm-gray: 20 8% 50%;
+
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(43 74% 38%) 0%, hsl(43 60% 50%) 100%);
+    --gradient-bone: linear-gradient(180deg, hsl(36 33% 95%) 0%, hsl(36 25% 90%) 100%);
+    --gradient-warm: linear-gradient(135deg, hsl(36 30% 97%) 0%, hsl(36 33% 95%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(20 14% 10% / 0.08);
+    --shadow-medium: 0 8px 30px -8px hsl(20 14% 10% / 0.12);
+    --shadow-gold: 0 4px 20px -4px hsl(43 74% 38% / 0.25);
+    --shadow-lift: 0 12px 40px -12px hsl(20 14% 10% / 0.15);
+
+    /* Transitions */
+    --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Sidebar (keeping defaults) */
+    --sidebar-background: 36 33% 95%;
+    --sidebar-foreground: 20 14% 10%;
+    --sidebar-primary: 20 14% 10%;
+    --sidebar-primary-foreground: 36 33% 95%;
+    --sidebar-accent: 36 20% 90%;
+    --sidebar-accent-foreground: 20 14% 10%;
+    --sidebar-border: 36 20% 85%;
+    --sidebar-ring: 43 74% 38%;
+  }
+
+  .dark {
+    --background: 20 14% 8%;
+    --foreground: 36 33% 95%;
+
+    --card: 20 14% 12%;
+    --card-foreground: 36 33% 95%;
+
+    --popover: 20 14% 12%;
+    --popover-foreground: 36 33% 95%;
+
+    --primary: 36 33% 95%;
+    --primary-foreground: 20 14% 10%;
+
+    --secondary: 20 12% 18%;
+    --secondary-foreground: 36 33% 95%;
+
+    --muted: 20 12% 20%;
+    --muted-foreground: 36 20% 65%;
+
+    --accent: 43 74% 45%;
+    --accent-foreground: 20 14% 10%;
+
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 12% 20%;
+    --input: 20 12% 20%;
+    --ring: 43 74% 45%;
+
+    --sidebar-background: 20 14% 10%;
+    --sidebar-foreground: 36 33% 95%;
+    --sidebar-primary: 43 74% 45%;
+    --sidebar-primary-foreground: 20 14% 10%;
+    --sidebar-accent: 20 12% 18%;
+    --sidebar-accent-foreground: 36 33% 95%;
+    --sidebar-border: 20 12% 20%;
+    --sidebar-ring: 43 74% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gold-underline {
+    @apply relative inline-block;
+  }
+
+  .gold-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-accent transform scale-x-0 origin-left transition-transform duration-300;
+  }
+
+  .gold-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  .trust-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 bg-secondary rounded-full text-sm text-muted-foreground;
+  }
+
+  .section-divider {
+    @apply w-16 h-px bg-accent mx-auto;
+  }
+
+  .glass-card {
+    @apply bg-white/60 backdrop-blur-[40px] border border-white/70 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_40px_rgba(0,0,0,0.06)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-500 rounded-[2rem];
+  }
+
+  .glass-panel {
+    @apply bg-white/40 backdrop-blur-[60px] border border-white/40 shadow-[0_8px_40px_rgba(0,0,0,0.03)] rounded-[3rem];
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+
+  @keyframes scaleIn {
+    from { 
+      opacity: 0; 
+      transform: scale(0.95); 
+    }
+    to { 
+      opacity: 1; 
+      transform: scale(1); 
+    }
+  }
+
+  @keyframes slideInRight {
+    from { 
+      opacity: 0; 
+      transform: translateX(20px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateX(0); 
+    }
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  .noise-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+}

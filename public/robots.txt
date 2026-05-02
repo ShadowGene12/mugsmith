@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /checkout
+Disallow: /order-confirmation
+Disallow: /thank-you
+Disallow: /curated-add-on/
+
+Sitemap: https://mugsmith.lovable.app/sitemap.xml

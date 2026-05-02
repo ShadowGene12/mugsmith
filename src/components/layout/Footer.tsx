@@ -20,25 +20,32 @@ export function Footer() {
       <div className="container-wide glass-panel border border-white/50 bg-white/20 backdrop-blur-3xl rounded-[3rem] overflow-hidden shadow-[0_-20px_50px_rgba(43,74,38,0.03)] text-foreground/80">
         
         {/* Newsletter Section */}
-        <div className="border-b border-foreground/10 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5" />
-          <div className="relative py-14 md:py-20 px-6">
+        <div className="border-b border-border/40 relative overflow-hidden bg-background">
+          <div className="absolute top-0 right-0 w-1/2 h-px bg-border/40" />
+          <div className="relative py-20 md:py-32 px-6">
             <div className="max-w-xl mx-auto text-center">
-              <h3 className="font-serif text-3xl md:text-4xl mb-4 text-foreground tracking-tight">
-                Get Early Access to New Drops
+              <div className="inline-flex items-center gap-2 mb-8">
+                <span className="w-4 h-px bg-accent"></span>
+                <span className="text-[10px] font-medium tracking-[0.25em] uppercase text-muted-foreground">
+                  The Inner Circle
+                </span>
+                <span className="w-4 h-px bg-accent"></span>
+              </div>
+              <h3 className="font-serif text-3xl md:text-4xl mb-6 text-foreground font-light tracking-wide">
+                Join the Journal
               </h3>
-              <p className="text-muted-foreground mb-8 text-sm md:text-base font-light">
-                New collections, limited editions, and workspace inspiration delivered once a week. No generic spam, ever.
+              <p className="text-muted-foreground mb-10 text-sm md:text-base font-light tracking-wide leading-relaxed">
+                Quiet dispatches on design, intentional workspaces, and early access to new collections. Sent thoughtfully, once a week.
               </p>
-              <form onSubmit={handleSubscribe} className="flex gap-3 max-w-sm mx-auto relative group">
+              <form onSubmit={handleSubscribe} className="flex gap-4 max-w-sm mx-auto relative group">
                 <Input
                   type="email"
-                  placeholder="Enter your email"
+                  placeholder="Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-white/50 border-white/60 backdrop-blur-md text-foreground placeholder:text-muted-foreground/50 h-12 shadow-inner transition-colors group-hover:border-accent/40"
+                  className="bg-transparent border-b border-border rounded-none px-0 focus-visible:ring-0 focus-visible:border-foreground placeholder:text-muted-foreground/40 h-12 transition-colors"
                 />
-                <Button type="submit" variant="cta" className="h-12 px-6 shadow-[0_10px_20px_rgba(43,74,38,0.15)]">
+                <Button type="submit" variant="minimal" className="h-12 px-0 tracking-widest uppercase text-xs">
                   Subscribe
                 </Button>
               </form>
@@ -47,13 +54,13 @@ export function Footer() {
         </div>
 
         {/* Main Footer */}
-        <div className="container-wide py-16 px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-8 mb-16">
+        <div className="container-wide py-20 px-6 bg-background">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-12 md:gap-10 mb-20">
             {/* Brand */}
             <div className="col-span-2 md:col-span-1">
-              <h4 className="font-serif text-3xl mb-4 text-foreground tracking-tight">Mugsmith</h4>
-              <p className="text-sm text-muted-foreground leading-relaxed font-light">
-                India's first identity-driven mug brand. Premium ceramic, designed specifically around your workspace archetype.
+              <h4 className="font-serif text-4xl mb-6 text-foreground font-light">Mugsmith</h4>
+              <p className="text-sm text-muted-foreground leading-[1.8] font-light tracking-wide">
+                Identity-driven ceramics. Designed specifically around your workspace archetype.
               </p>
             </div>
 

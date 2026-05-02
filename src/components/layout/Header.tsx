@@ -32,25 +32,25 @@ export function Header({ isStatic = false }: HeaderProps) {
   };
 
   return (
-    <header className={`${isStatic ? 'relative' : 'sticky'} z-40 bg-white/40 backdrop-blur-[40px] border-b border-white/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] transition-all duration-300 ${!isStatic && hasAnnouncementBar ? 'top-[42px] md:top-[44px]' : 'top-0'}`}>
+    <header className={`${isStatic ? 'relative' : 'sticky'} z-40 bg-background/95 backdrop-blur-md border-b border-border/40 transition-all duration-500 ${!isStatic && hasAnnouncementBar ? 'top-[42px] md:top-[44px]' : 'top-0'}`}>
       <div className="container-wide">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-serif text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+            <span className="font-serif text-3xl md:text-4xl font-light tracking-wide text-foreground">
               Mugsmith
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-sm font-medium transition-colors gold-underline ${
+                className={`text-xs tracking-[0.15em] uppercase transition-colors relative after:absolute after:-bottom-2 after:left-0 after:w-full after:h-px after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-500 after:origin-left ${
                   isActive(link.href)
-                    ? "text-accent"
+                    ? "text-foreground after:scale-x-100"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -60,10 +60,10 @@ export function Header({ isStatic = false }: HeaderProps) {
           </nav>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {/* Quiz CTA */}
-            <Button asChild variant="cta" size="sm" className="hidden md:inline-flex">
-              <Link to="/quiz">Take the Quiz</Link>
+            <Button asChild variant="outline" size="sm" className="hidden md:inline-flex text-[10px] h-9">
+              <Link to="/quiz">Assessment</Link>
             </Button>
 
             <CartDrawer />

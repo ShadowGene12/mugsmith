@@ -4,43 +4,55 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export function QuizFeatureSection() {
   return (
-    <section className="py-12 md:py-24 relative z-10 px-4">
-      <div className="container-narrow text-center glass-panel p-8 md:p-16 border-accent/20 bg-accent/5 backdrop-blur-3xl shadow-[0_20px_50px_rgba(43,74,38,0.05)]">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 text-accent rounded-full mb-4 md:mb-6 shadow-inner border border-accent/20">
-          <Sparkles className="h-3.5 w-3.5" />
-          <span className="text-xs md:text-sm font-medium tracking-wide uppercase">Free · 60 seconds · Instant mapping</span>
-        </div>
+    <section className="py-24 md:py-40 relative z-10 bg-background overflow-hidden">
+      {/* Delicate background elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-px bg-border/40" />
+      <div className="absolute top-0 right-[15%] w-px h-24 bg-border/40" />
 
-        <h2 className="font-serif text-3xl md:text-5xl font-semibold text-foreground mb-3 md:mb-6 tracking-tight">
-          Not sure which archetype you belong to?
-        </h2>
-        <p className="text-sm md:text-lg text-muted-foreground max-w-xl mx-auto mb-6 md:mb-10 leading-relaxed font-light">
-          Answer a few precise questions about how you construct your days. We'll map your identity and secure your place on the waitlist for your exclusive collection.
-        </p>
+      <div className="container-wide text-center">
+        <div className="max-w-3xl mx-auto px-6 py-16 md:py-24 relative">
+          <div className="absolute inset-0 bg-secondary/30 rounded-sm -z-10" />
 
-        <Button asChild variant="cta" size="lg" className="group">
-          <Link to="/quiz">
-            Take the Free Quiz
-            <ArrowRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-        </Button>
+          <div className="inline-flex items-center gap-2 mb-10">
+            <span className="w-6 h-px bg-accent"></span>
+            <span className="text-[10px] font-medium tracking-[0.25em] uppercase text-muted-foreground">
+              Discovery
+            </span>
+            <span className="w-6 h-px bg-accent"></span>
+          </div>
 
-        {/* Quiz preview steps */}
-        <div className="mt-10 md:mt-16 grid grid-cols-3 gap-4 md:gap-8 max-w-md mx-auto">
-          {[
-            { step: "1", label: "Answer 8 behavioral questions" },
-            { step: "2", label: "Receive your true workspace identity" },
-            { step: "3", label: "Secure early access to your collection" },
-          ].map((item) => (
-            <div key={item.step} className="text-center">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mx-auto mb-2 font-serif font-semibold text-sm md:text-base">
-                {item.step}
+          <h2 className="font-serif text-4xl md:text-6xl font-light text-foreground mb-8 leading-tight">
+            Not sure which archetype <br className="hidden md:block"/> belongs on your desk?
+          </h2>
+
+          <p className="text-base md:text-lg text-muted-foreground max-w-xl mx-auto mb-14 leading-[1.8] font-light tracking-wide">
+            Take a 60-second assessment. Answer a few precise questions about how you construct your days, and we'll map your identity.
+          </p>
+
+          <Button asChild variant="cta" size="lg" className="group min-w-[200px]">
+            <Link to="/quiz">
+              Begin Assessment
+              <ArrowRight className="h-4 w-4 md:h-5 md:w-5 group-hover:translate-x-2 transition-transform duration-500 ease-out" />
+            </Link>
+          </Button>
+
+          {/* Quiz preview steps */}
+          <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-2xl mx-auto px-4">
+            {[
+              { step: "01", label: "Answer questions about your daily rituals" },
+              { step: "02", label: "Discover your exact workspace archetype" },
+              { step: "03", label: "Secure early access to your piece" },
+            ].map((item) => (
+              <div key={item.step} className="text-center group">
+                <div className="text-xs tracking-[0.2em] font-medium text-accent mb-4">
+                  {item.step}
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed font-light">
+                  {item.label}
+                </p>
               </div>
-              <p className="text-xs md:text-sm text-muted-foreground leading-snug">
-                {item.label}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

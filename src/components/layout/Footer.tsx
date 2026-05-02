@@ -43,9 +43,9 @@ export function Footer() {
                   placeholder="Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-transparent border-b border-border rounded-none px-0 focus-visible:ring-0 focus-visible:border-foreground placeholder:text-muted-foreground/40 h-12 transition-colors"
+                  className="bg-transparent border-b border-border rounded-none px-0 focus-visible:ring-0 focus-visible:border-accent placeholder:text-muted-foreground/40 h-12 transition-colors"
                 />
-                <Button type="submit" variant="minimal" className="h-12 px-0 tracking-widest uppercase text-xs">
+                <Button type="submit" variant="minimal" className="h-12 px-0 tracking-widest uppercase text-xs text-accent hover:text-accent/80 hover:no-underline">
                   Subscribe
                 </Button>
               </form>

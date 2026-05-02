@@ -36,7 +36,7 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
-              <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
+              <Button asChild variant="cta" size="xl" className="w-full sm:w-auto">
                 <Link to="/quiz">
                   Find Your Archetype
                 </Link>
@@ -44,7 +44,7 @@ export function HeroSection() {
               <Button asChild variant="minimal" className="group w-full sm:w-auto h-14 text-sm tracking-widest uppercase">
                 <Link to="/collections/the-architect">
                   Explore Catalog
-                  <ArrowRight className="h-4 w-4 ml-3 group-hover:translate-x-2 transition-transform duration-500 ease-out" />
+                  <ArrowRight className="h-4 w-4 ml-3 group-hover:translate-x-2 transition-transform duration-500 ease-out text-accent" />
                 </Link>
               </Button>
             </div>
@@ -77,7 +77,7 @@ export function HeroSection() {
             className="lg:col-span-5 relative mt-16 lg:mt-0"
           >
             <div className="relative w-full aspect-[3/4] max-w-sm mx-auto lg:mr-0 group">
-              <div className="absolute inset-0 bg-secondary/50 transform translate-x-4 translate-y-4 rounded-sm transition-transform duration-700 group-hover:translate-x-6 group-hover:translate-y-6" />
+              <div className="absolute inset-0 bg-accent/20 transform translate-x-4 translate-y-4 rounded-sm transition-transform duration-700 group-hover:translate-x-6 group-hover:translate-y-6 border border-accent/10" />
 
               <div className="absolute inset-0 bg-stone-100 rounded-sm overflow-hidden z-10 shadow-sm transition-all duration-700 group-hover:-translate-x-2 group-hover:-translate-y-2">
                 <img 

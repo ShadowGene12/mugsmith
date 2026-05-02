@@ -9,65 +9,80 @@ const icons = [Compass, Minimize2, Moon, Crosshair, Flame, Palette, Zap];
 
 export function IdentityStripSection() {
   return (
-    <section className="py-10 md:py-16 relative z-10">
-      <div className="container-wide glass-panel p-8 md:p-12 my-4">
+    <section className="py-20 md:py-32 relative z-10 bg-secondary/30">
+      <div className="container-wide px-6 md:px-12">
         <ScrollReveal variant="fade-up">
-          <div className="text-center mb-6 md:mb-10">
-            <span className="inline-block text-accent font-medium tracking-widest uppercase text-xs md:text-sm mb-2">
-              Personality-Matched Collections
-            </span>
-            <h2 className="font-serif text-xl md:text-3xl font-semibold text-foreground">
-              Every mug tells a story. Which one is yours?
+          <div className="flex flex-col items-center text-center mb-16 md:mb-24">
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="w-4 h-px bg-accent"></span>
+              <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-muted-foreground">
+                The Seven Archetypes
+              </span>
+              <span className="w-4 h-px bg-accent"></span>
+            </div>
+            <h2 className="font-serif text-3xl md:text-5xl font-light text-foreground max-w-2xl leading-tight">
+              A collection for every kind of <span className="italic">quiet pursuit.</span>
             </h2>
           </div>
         </ScrollReveal>
 
         {/* Mobile: horizontal scroll strip */}
-        <div className="flex md:hidden gap-3 overflow-x-auto pb-2 px-2 -mx-2 scrollbar-hide">
+        <div className="flex md:hidden gap-6 overflow-x-auto pb-8 px-2 -mx-2 scrollbar-hide snap-x">
           {collections.map((collection, index) => {
             const Icon = icons[index] || Compass;
             return (
               <ScrollReveal key={collection.id} variant="slide-right" delay={0.1 + (index * 0.1)}>
                 <Link
                   to={`/collections/${collection.slug}`}
-                  className="flex-shrink-0 flex flex-col items-center text-center p-3 rounded-xl bg-background border border-border/50 hover:border-accent/30 transition-all w-28 h-full"
+                  className="flex-shrink-0 flex flex-col items-center text-center p-6 bg-background rounded-sm snap-center w-[200px]"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center mb-2">
-                    <Icon className="h-5 w-5 text-muted-foreground" />
+                  <div className="mb-6">
+                    <Icon className="h-6 w-6 text-foreground stroke-[1]" />
                   </div>
-                  <span className="font-serif text-xs font-semibold text-foreground line-clamp-1">
+                  <h3 className="font-serif text-lg text-foreground mb-2">
                     {collection.name}
-                  </span>
+                  </h3>
+                  <p className="text-xs text-muted-foreground font-light tracking-wide">
+                    {collection.tagline}
+                  </p>
                 </Link>
               </ScrollReveal>
             );
           })}
         </div>
 
-        {/* Desktop: horizontal wrap */}
-        <div className="hidden md:flex flex-wrap justify-center gap-4">
-          {collections.map((collection, index) => {
+        {/* Desktop: horizontal layout */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-8">
+          {collections.slice(0, 4).map((collection, index) => {
             const Icon = icons[index] || Compass;
             return (
-              <ScrollReveal key={collection.id} variant="scale-up" delay={0.1 + (index * 0.1)}>
+              <ScrollReveal key={collection.id} variant="fade-up" delay={0.2 + (index * 0.1)}>
                 <Link
                   to={`/collections/${collection.slug}`}
-                  className="group flex flex-col items-center text-center p-6 rounded-2xl bg-background border border-border/50 hover:border-accent/30 hover:shadow-md transition-all duration-300 h-full w-[180px]"
+                  className="group flex flex-col p-8 bg-background rounded-sm hover:-translate-y-1 transition-transform duration-700 h-full border border-border/40"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center group-hover:bg-accent group-hover:text-accent-foreground transition-all duration-300 mb-3">
-                    <Icon className="h-6 w-6" />
+                  <div className="mb-8">
+                    <Icon className="h-8 w-8 text-foreground stroke-[1] group-hover:text-accent transition-colors duration-500" />
                   </div>
-                  <h3 className="font-serif text-base font-semibold text-foreground group-hover:text-accent transition-colors mb-1">
+                  <h3 className="font-serif text-2xl font-light text-foreground mb-3">
                     {collection.name}
                   </h3>
-                  <p className="text-xs text-muted-foreground line-clamp-2">
+                  <p className="text-sm text-muted-foreground font-light tracking-wide mb-8">
                     {collection.tagline}
                   </p>
-                  <ArrowRight className="h-4 w-4 text-muted-foreground mt-3 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
+                  <div className="mt-auto flex items-center gap-2 text-xs tracking-widest uppercase font-medium text-foreground group-hover:text-accent transition-colors">
+                    Explore <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </Link>
               </ScrollReveal>
             );
           })}
+        </div>
+
+        <div className="mt-12 text-center hidden md:block">
+           <Link to="/workspace-identities" className="inline-flex items-center gap-2 text-sm tracking-widest uppercase text-muted-foreground hover:text-foreground transition-colors pb-1 border-b border-border hover:border-foreground">
+             View All Archetypes
+           </Link>
         </div>
       </div>
     </section>

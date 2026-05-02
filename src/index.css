@@ -7,45 +7,45 @@
 @layer base {
   :root {
     /* Mugsmith Premium Palette */
-    --background: 36 33% 95%;
-    --foreground: 20 14% 10%;
+    --background: 36 25% 96%;
+    --foreground: 24 15% 12%;
 
-    --card: 36 30% 97%;
-    --card-foreground: 20 14% 10%;
+    --card: 36 20% 98%;
+    --card-foreground: 24 15% 12%;
 
-    --popover: 36 30% 97%;
-    --popover-foreground: 20 14% 10%;
+    --popover: 36 20% 98%;
+    --popover-foreground: 24 15% 12%;
 
-    --primary: 20 14% 10%;
-    --primary-foreground: 36 33% 95%;
+    --primary: 24 15% 12%;
+    --primary-foreground: 36 25% 96%;
 
-    --secondary: 36 20% 90%;
-    --secondary-foreground: 20 14% 10%;
+    --secondary: 36 18% 90%;
+    --secondary-foreground: 24 15% 12%;
 
-    --muted: 36 15% 88%;
-    --muted-foreground: 20 10% 40%;
+    --muted: 36 12% 88%;
+    --muted-foreground: 24 10% 45%;
 
-    --accent: 43 74% 38%;
-    --accent-foreground: 36 33% 95%;
+    --accent: 43 45% 42%;
+    --accent-foreground: 36 25% 96%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 36 20% 85%;
-    --input: 36 20% 85%;
-    --ring: 43 74% 38%;
+    --border: 36 15% 84%;
+    --input: 36 15% 84%;
+    --ring: 43 45% 42%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
     /* Custom Mugsmith tokens */
-    --gold: 43 74% 38%;
-    --gold-light: 43 60% 50%;
-    --gold-muted: 43 40% 70%;
-    --bone: 36 33% 95%;
-    --bone-dark: 36 25% 90%;
-    --charcoal: 20 14% 10%;
-    --charcoal-light: 20 10% 25%;
-    --warm-gray: 20 8% 50%;
+    --gold: 43 45% 42%;
+    --gold-light: 43 35% 55%;
+    --gold-muted: 43 25% 72%;
+    --bone: 36 25% 96%;
+    --bone-dark: 36 20% 90%;
+    --charcoal: 24 15% 12%;
+    --charcoal-light: 24 12% 30%;
+    --warm-gray: 24 8% 52%;
 
     /* Gradients */
     --gradient-gold: linear-gradient(135deg, hsl(43 74% 38%) 0%, hsl(43 60% 50%) 100%);
@@ -131,11 +131,11 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground font-sans antialiased leading-relaxed tracking-wide;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-serif tracking-wide font-normal;
   }
 }
 
@@ -174,11 +174,11 @@
   }
 
   .glass-card {
-    @apply bg-white/60 backdrop-blur-[40px] border border-white/70 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_8px_40px_rgba(0,0,0,0.06)] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.9),0_20px_50px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-500 rounded-[2rem];
+    @apply bg-white/95 border border-border/50 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-700 ease-out rounded-md;
   }
 
   .glass-panel {
-    @apply bg-white/40 backdrop-blur-[60px] border border-white/40 shadow-[0_8px_40px_rgba(0,0,0,0.03)] rounded-[3rem];
+    @apply bg-white/95 border border-border/40 shadow-sm rounded-lg;
   }
 }
 

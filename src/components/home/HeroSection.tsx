@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Star, Sparkles } from "lucide-react";
+import { ArrowRight, Star, Sparkles, Plus } from "lucide-react";
 import { motion } from "framer-motion";
+import { MagneticWrapper } from "@/components/shared/MagneticWrapper";
 
 export function HeroSection() {
   return (
@@ -27,7 +28,7 @@ export function HeroSection() {
               </span>
             </div>
 
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-[6rem] text-foreground mb-8 leading-[1.1] tracking-normal font-light">
+            <h1 className="font-serif text-5xl md:text-7xl lg:text-[6rem] text-foreground mb-8 leading-[1.1] tracking-normal font-light text-balance">
               A piece that <span className="italic font-normal">reflects</span> your workspace ritual.
             </h1>
 
@@ -36,15 +37,16 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
-              <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
-                <Link to="/quiz">
-                  Find Your Archetype
-                </Link>
-              </Button>
-              <Button asChild variant="minimal" className="group w-full sm:w-auto h-14 text-sm tracking-widest uppercase">
-                <Link to="/collections/the-architect">
+              <MagneticWrapper>
+                <Button asChild variant="hero" size="xl" className="w-full sm:w-auto">
+                  <Link to="/quiz">
+                    Find Your Archetype
+                  </Link>
+                </Button>
+              </MagneticWrapper>
+              <Button asChild variant="minimal" className="w-full sm:w-auto h-14 text-sm tracking-widest uppercase">
+                <Link to="/collections/the-architect" className="gold-underline pb-1">
                   Explore Catalog
-                  <ArrowRight className="h-4 w-4 ml-3 group-hover:translate-x-2 transition-transform duration-500 ease-out" />
                 </Link>
               </Button>
             </div>
@@ -81,19 +83,34 @@ export function HeroSection() {
 
               <div className="absolute inset-0 bg-stone-100 rounded-sm overflow-hidden z-10 shadow-sm transition-all duration-700 group-hover:-translate-x-2 group-hover:-translate-y-2">
                 <img 
-                  src="/images/products/bld-sediment.jpg" 
-                  alt="The Builder Archetype Mug"
+                  src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=2070&auto=format&fit=crop" 
+                  alt="A beautifully curated workspace featuring a Mugsmith ceramic piece"
                   className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=2070&auto=format&fit=crop"; 
                   }}
                 />
+                
+                {/* Shop the Setup Hotspot */}
+                <div className="absolute top-[45%] right-[30%] w-6 h-6 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="relative w-full h-full flex items-center justify-center cursor-pointer">
+                    <div className="absolute inset-0 rounded-full bg-gold animate-ping opacity-30" />
+                    <div className="absolute inset-0 rounded-full bg-background/80 backdrop-blur-sm shadow-md flex items-center justify-center border border-gold/50 hover:bg-gold hover:text-white transition-colors duration-300">
+                      <Plus className="w-3 h-3" />
+                    </div>
+                  </div>
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-max max-w-[200px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-card p-3 rounded-lg shadow-lg border border-border pointer-events-none translate-y-2 group-hover:translate-y-0">
+                    <p className="text-xs font-serif font-semibold text-foreground mb-1">The Builder Collection</p>
+                    <p className="text-[10px] text-muted-foreground">Complete your workspace ritual with the curated ceramic set.</p>
+                  </div>
+                </div>
               </div>
               
               <div className="absolute -left-8 top-1/2 -translate-y-1/2 rotate-180 hidden md:block z-20" style={{ writingMode: 'vertical-rl' }}>
                 <p className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground rotate-90 origin-center whitespace-nowrap">
-                  The Builder — Sediment
+                  The Builder — Workspace
                 </p>
               </div>
             </div>

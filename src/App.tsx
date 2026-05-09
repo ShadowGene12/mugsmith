@@ -25,7 +25,7 @@ import PolicyPage from "./pages/PolicyPage";
 import CommunityPage from "./pages/CommunityPage";
 import NotFound from "./pages/NotFound";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
-
+import { FEATURES } from "@/config/features";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -42,29 +42,43 @@ const App = () => (
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/workspace-identities" element={<WorkspaceIdentitiesPage />} />
             <Route path="/workspace-identities/:slug" element={<WorkspaceIdentityDetailPage />} />
-            <Route path="/collections/:slug" element={<CollectionPage />} />
-            <Route path="/product/:slug" element={<ProductPage />} />
-            <Route path="/gifting" element={<GiftingPage />} />
-            <Route path="/gifts/:slug" element={<GiftDetailPage />} />
-            <Route path="/journal" element={<JournalPage />} />
-            <Route path="/journal/:slug" element={<JournalPostPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/policies/:type" element={<PolicyPage />} />
-            <Route path="/community" element={<CommunityPage />} />
+            
+            {FEATURES.commerce && (
+              <>
+                <Route path="/collections/:slug" element={<CollectionPage />} />
+                <Route path="/product/:slug" element={<ProductPage />} />
+                <Route path="/gifting" element={<GiftingPage />} />
+                <Route path="/gifts/:slug" element={<GiftDetailPage />} />
+                <Route path="/checkout" element={<CheckoutPage />} />
+                <Route path="/curated-add-on/:slug" element={<OTOPage />} />
+                <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
+                <Route path="/thank-you" element={<ThankYouPage />} />
+                <Route path="/collection/:slug" element={<CollectionPage />} />
+              </>
+            )}
 
-            {/* Post-purchase (noindex, functional) */}
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/curated-add-on/:slug" element={<OTOPage />} />
-            <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
-            <Route path="/thank-you" element={<ThankYouPage />} />
+            {FEATURES.journal && (
+              <>
+                <Route path="/journal" element={<JournalPage />} />
+                <Route path="/journal/:slug" element={<JournalPostPage />} />
+              </>
+            )}
+
+            {FEATURES.about && <Route path="/about" element={<AboutPage />} />}
+            {FEATURES.community && <Route path="/community" element={<CommunityPage />} />}
+
+            {FEATURES.faqAndPolicy && (
+              <>
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="/faq" element={<FAQPage />} />
+                <Route path="/policies/:type" element={<PolicyPage />} />
+              </>
+            )}
 
             {/* Legacy redirects */}
             <Route path="/personalities" element={<Navigate to="/workspace-identities" replace />} />
             <Route path="/value-stack" element={<Navigate to="/about" replace />} />
             <Route path="/oto/:slug" element={<Navigate to="/about" replace />} />
-            <Route path="/collection/:slug" element={<CollectionPage />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>

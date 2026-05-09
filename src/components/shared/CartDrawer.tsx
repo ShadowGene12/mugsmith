@@ -3,13 +3,17 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { ShoppingBag, Trash2, Plus, Minus, ArrowRight } from "lucide-react";
-
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
 interface CartDrawerProps {
   children?: React.ReactNode;
 }
 
 export function CartDrawer({ children }: CartDrawerProps) {
-  const { items, itemCount, subtotal, removeItem, updateQuantity } = useCart();
+  const { items, itemCount, subtotal, removeItem, updateQuantity, quizResult } = useCart();
+  const [isGift, setIsGift] = useState(false);
+  const [giftNote, setGiftNote] = useState("");
 
   return (
     <Sheet>
@@ -28,7 +32,7 @@ export function CartDrawer({ children }: CartDrawerProps) {
       <SheetContent className="w-full sm:max-w-md">
         <SheetHeader>
           <SheetTitle className="font-serif text-xl">
-            Your Cart ({itemCount})
+            {quizResult ? `Your ${quizResult.identity} Toolkit (${itemCount})` : `Your Cart (${itemCount})`}
           </SheetTitle>
         </SheetHeader>
 
@@ -91,6 +95,27 @@ export function CartDrawer({ children }: CartDrawerProps) {
                     </div>
                   );
                 })}
+              </div>
+
+              <div className="pt-4 border-t border-border mt-auto">
+                <div className="flex items-center space-x-2 mb-4 p-3 bg-secondary/50 rounded-lg border border-border">
+                  <Checkbox id="isGift" checked={isGift} onCheckedChange={(c) => setIsGift(!!c)} />
+                  <Label htmlFor="isGift" className="cursor-pointer flex-1">
+                    <span className="block font-medium">Add a handwritten gift note</span>
+                    <span className="block text-xs text-muted-foreground mt-0.5">We'll write it on premium cardstock</span>
+                  </Label>
+                </div>
+                {isGift && (
+                  <div className="mb-4 animate-fade-in">
+                    <textarea 
+                      id="giftNote" 
+                      className="flex min-h-[80px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring resize-none" 
+                      placeholder="e.g. Wishing you deep focus."
+                      value={giftNote}
+                      onChange={(e) => setGiftNote(e.target.value)}
+                    />
+                  </div>
+                )}
               </div>
 
               <div className="border-t border-border pt-4 space-y-4">

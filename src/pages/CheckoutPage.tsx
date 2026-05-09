@@ -34,6 +34,7 @@ export default function CheckoutPage() {
     getOrderBump,
     coupon,
     isCouponValid,
+    quizResult,
   } = useCart();
 
   const [formData, setFormData] = useState({
@@ -121,6 +122,14 @@ export default function CheckoutPage() {
       return;
     }
 
+    if (paymentMethod === "online") {
+      // TODO: Phase 2 - Razorpay Integration
+      // 1. Call Supabase Edge Function to create Razorpay Order (pass items, secure prices)
+      // 2. Initialize Razorpay Checkout with returned Order ID
+      // 3. On success, verify signature via Edge Function
+      toast.info("Online payments are being set up. Proceeding with COD for now.");
+    }
+
     // Navigate to first OTO
     navigate("/curated-add-on/complete-workspace");
   };
@@ -175,7 +184,7 @@ export default function CheckoutPage() {
       <SEO {...pageSEO.checkout} />
       <div className="container-wide py-8 md:py-12">
         <h1 className="font-serif text-3xl md:text-4xl font-semibold text-foreground text-center mb-4">
-          Secure Checkout
+          Secure Checkout {quizResult && <span className="block text-xl text-muted-foreground mt-2 font-normal italic">for {quizResult.identity}</span>}
         </h1>
         
         {/* Coupon Timer */}
@@ -302,12 +311,12 @@ export default function CheckoutPage() {
                       </div>
                     </Label>
                   </div>
-                  <div className="flex items-center space-x-3 p-4 border border-border rounded-lg cursor-pointer hover:border-accent/50 transition-colors opacity-50">
-                    <RadioGroupItem value="online" id="online" disabled />
+                  <div className="flex items-center space-x-3 p-4 border border-border rounded-lg cursor-pointer hover:border-accent/50 transition-colors">
+                    <RadioGroupItem value="online" id="online" />
                     <Label htmlFor="online" className="flex-1 cursor-pointer">
                       <div className="font-medium">Online Payment</div>
                       <div className="text-sm text-muted-foreground">
-                        Coming soon
+                        Credit Cards, UPI, Netbanking (Razorpay)
                       </div>
                     </Label>
                   </div>
@@ -472,15 +481,15 @@ export default function CheckoutPage() {
                     <Lock className="h-4 w-4 text-accent" />
                     <span className="text-sm font-medium">Secure Checkout</span>
                   </div>
-                  <div className="flex items-center justify-center gap-4 text-xs text-muted-foreground">
-                    <span className="flex items-center gap-1">
-                      <Shield className="h-3 w-3" />
-                      Safe & Secure
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Truck className="h-3 w-3" />
-                      Free Shipping
-                    </span>
+                  <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+                    <div className="flex flex-col items-center gap-1 text-center bg-card p-2 rounded-md border border-border">
+                      <Shield className="h-4 w-4 text-accent" />
+                      <span>Guaranteed Safe Delivery</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-1 text-center bg-card p-2 rounded-md border border-border">
+                      <Sparkles className="h-4 w-4 text-accent" />
+                      <span>Dishwasher & Microwave Safe</span>
+                    </div>
                   </div>
                 </div>
 

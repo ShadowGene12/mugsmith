@@ -7,6 +7,11 @@ interface SmoothScrollProps {
 
 export function SmoothScroll({ children }: SmoothScrollProps) {
   useEffect(() => {
+    // Only initialize Lenis on desktop/non-touch devices
+    const isMobile = window.innerWidth < 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    
+    if (isMobile) return;
+
     // Initialize Lenis with premium-feeling settings
     const lenis = new Lenis({
       duration: 1.2, // A bit of duration for smooth feel

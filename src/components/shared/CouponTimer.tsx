@@ -29,37 +29,35 @@ export function CouponTimer({ variant = "inline" }: CouponTimerProps) {
     return null;
   }
 
-  const minutes = Math.floor(timeRemaining / 60000);
-  const seconds = Math.floor((timeRemaining % 60000) / 1000);
+  const totalDuration = 15 * 60 * 1000; // 15 mins default
+  const progress = Math.max(0, Math.min(100, (timeRemaining / totalDuration) * 100));
 
   if (variant === "banner") {
     return (
-      <div className="bg-accent text-accent-foreground py-3 px-4">
-        <div className="container-wide flex items-center justify-center gap-3">
-          <Tag className="h-4 w-4" />
-          <span className="font-medium">
-            {coupon.code} — {coupon.discount}% OFF
-          </span>
-          <span className="text-accent-foreground/80">|</span>
-          <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4" />
-            <span className="font-mono font-bold">
-              {minutes.toString().padStart(2, "0")}:{seconds.toString().padStart(2, "0")}
+      <div className="bg-background border-b border-border py-2 px-4 relative overflow-hidden">
+        <div 
+          className="absolute top-0 left-0 h-full bg-gold/10 transition-all duration-1000 ease-linear"
+          style={{ width: `${progress}%` }}
+        />
+        <div className="container-wide flex flex-col sm:flex-row items-center justify-between gap-2 relative z-10">
+          <div className="flex items-center gap-3">
+            <Tag className="h-4 w-4 text-gold" />
+            <span className="font-medium text-sm">
+              Your <span className="text-gold">{coupon.discount}%</span> advantage is reserved.
             </span>
-            <span className="text-sm">remaining</span>
           </div>
+          <span className="text-xs text-muted-foreground uppercase tracking-wider">
+            Offer expires soon
+          </span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-accent/10 text-accent rounded-full text-sm">
-      <Clock className="h-3.5 w-3.5" />
-      <span className="font-mono font-semibold">
-        {minutes.toString().padStart(2, "0")}:{seconds.toString().padStart(2, "0")}
-      </span>
-      <span className="text-accent/80">left for {coupon.discount}% off</span>
+    <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-background border border-border text-foreground rounded-full text-xs tracking-wide">
+      <span className="w-2 h-2 rounded-full bg-gold animate-pulse" />
+      <span>Code <span className="font-semibold text-gold">{coupon.code}</span> applied</span>
     </div>
   );
 }

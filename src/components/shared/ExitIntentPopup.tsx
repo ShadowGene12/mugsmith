@@ -7,10 +7,11 @@ import { Link } from "react-router-dom";
 export function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
-  const { coupon, isCouponValid, items } = useCart();
+  const { coupon, isCouponValid, items, quizResult } = useCart();
 
   const hasCoupon = coupon && isCouponValid();
   const hasItemsInCart = items.length > 0;
+  const hasCompletedQuiz = !!quizResult;
 
   const handleMouseLeave = useCallback((e: MouseEvent) => {
     if (e.clientY <= 10 && !hasShown) {
@@ -44,7 +45,8 @@ export function ExitIntentPopup() {
 
   const handleClose = () => setIsVisible(false);
 
-  if (!isVisible) return null;
+  // Do not show popup if they have completed the quiz to avoid funnel fatigue
+  if (!isVisible || hasCompletedQuiz) return null;
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in">

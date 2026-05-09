@@ -7,6 +7,7 @@ import { QuizQuestions } from "@/components/quiz/QuizQuestions";
 import { QuizResultView } from "@/components/quiz/QuizResult";
 import { QuizEmailGate } from "@/components/quiz/QuizEmailGate";
 import { trackEvent } from "@/lib/analytics";
+import { supabase } from "@/integrations/supabase/client";
 
 const QUIZ_COMPLETED_KEY = "quiz_completed";
 const QUIZ_RESULT_KEY = "quiz_result";
@@ -89,16 +90,39 @@ export default function QuizPage() {
     setHasTrackedStart(false);
   };
 
-  const handleEmailSubmit = (email: string) => {
+  const handleEmailSubmit = async (email: string) => {
     setEmail(email);
-    const quizResult = calculateQuizResult(answers);
-    setResult(quizResult);
-    setQuizResult(quizResult.identity);
-    localStorage.setItem(QUIZ_COMPLETED_KEY, "true");
-    localStorage.setItem(QUIZ_RESULT_KEY, quizResult.identity);
-    trackEvent({ event: "quiz_complete", identity: quizResult.identity });
-    setShowEmailGate(false);
-    setShowResult(true);
+    
+    try {
+      // Call Supabase Edge Function
+      const { data, error } = await supabase.functions.invoke('submit-quiz', {
+        body: { email, answers }
+      });
+
+      if (error) throw new Error(error.message);
+
+      const identity = data?.archetype;
+      const finalResult = quizResults.find(r => r.identity === identity) || quizResults[0];
+      
+      setResult(finalResult);
+      setQuizResult(finalResult.identity);
+      localStorage.setItem(QUIZ_COMPLETED_KEY, "true");
+      localStorage.setItem(QUIZ_RESULT_KEY, finalResult.identity);
+      trackEvent({ event: "quiz_complete", identity: finalResult.identity });
+      
+    } catch (err) {
+      console.error("Failed to submit quiz to Edge Function:", err);
+      // Fallback to local calculation if server fails (useful for local dev without Supabase running)
+      const fallbackResult = calculateQuizResult(answers);
+      setResult(fallbackResult);
+      setQuizResult(fallbackResult.identity);
+      localStorage.setItem(QUIZ_COMPLETED_KEY, "true");
+      localStorage.setItem(QUIZ_RESULT_KEY, fallbackResult.identity);
+      trackEvent({ event: "quiz_complete_offline", identity: fallbackResult.identity });
+    } finally {
+      setShowEmailGate(false);
+      setShowResult(true);
+    }
   };
 
   if (showResult && result) {

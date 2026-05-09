@@ -48,9 +48,9 @@ export function Header({ isStatic = false }: HeaderProps) {
               <Link
                 key={link.href}
                 to={link.href}
-                className={`text-xs tracking-[0.15em] uppercase transition-colors relative after:absolute after:-bottom-2 after:left-0 after:w-full after:h-px after:bg-foreground after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-500 after:origin-left ${
+                className={`text-xs tracking-[0.15em] uppercase transition-colors relative after:absolute after:-bottom-2 after:left-0 after:w-full after:h-px after:bg-accent after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-500 after:origin-left ${
                   isActive(link.href)
-                    ? "text-foreground after:scale-x-100"
+                    ? "text-accent after:scale-x-100"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
@@ -62,7 +62,7 @@ export function Header({ isStatic = false }: HeaderProps) {
           {/* Right Actions */}
           <div className="flex items-center gap-4">
             {/* Quiz CTA */}
-            <Button asChild variant="outline" size="sm" className="hidden md:inline-flex text-[10px] h-9">
+            <Button asChild variant="gold-outline" size="sm" className="hidden md:inline-flex text-[10px] h-9">
               <Link to="/quiz">Assessment</Link>
             </Button>
 

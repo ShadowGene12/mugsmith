@@ -40,11 +40,11 @@ export function BestsellersSection() {
                 className="group block"
               >
                 <div className="relative aspect-[4/5] bg-secondary/50 overflow-hidden mb-6 rounded-sm">
-                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/10 group-hover:scale-105 transition-transform duration-1000 ease-out">
+                  <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/10 group-hover:text-accent/20 group-hover:scale-105 transition-all duration-1000 ease-out">
                     <ShoppingBag className="h-16 w-16 stroke-[1]" />
                   </div>
                   {product.badge && (
-                    <span className="absolute top-4 left-4 px-3 py-1 bg-background/90 backdrop-blur-sm text-foreground text-[10px] tracking-widest uppercase font-medium rounded-sm">
+                    <span className="absolute top-4 left-4 px-3 py-1 bg-background/90 backdrop-blur-sm text-accent border border-accent/20 text-[10px] tracking-widest uppercase font-medium rounded-sm">
                       {product.badge}
                     </span>
                   )}
